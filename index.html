@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Kabeya - Full-Stack Developer Portfolio</title>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #f9ca24;
+            --dark: #111;
+            --light: #f9f9f9;
+            --gray: #333;
+            --light-gray: #eee;
+        }
+
+        * {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            outline: none;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        *::selection {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        html::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5rem;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            padding-left: 35rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--primary);
+            color: var(--dark);
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 1.7rem;
+            border-radius: 5rem;
+            font-weight: 600;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+        }
+
+        .btn i {
+            padding-left: 0.5rem;
+        }
+
+        .heading {
+            text-align: center;
+            margin: 0 6rem;
+            font-size: 4rem;
+            padding: 1rem;
+            border-bottom: 0.2rem solid var(--light);
+            color: var(--light);
+            margin-bottom: 5rem;
+        }
+
+        .heading span {
+            color: var(--primary);
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 100%;
+            width: 35rem;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            text-align: center;
+            box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+        }
+
+        header .user img {
+            height: 17rem;
+            width: 17rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 0.7rem solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        header .user img:hover {
+            transform: scale(1.05);
+        }
+
+        header .user .name {
+            font-size: 3.5rem;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        header .user .post {
+            font-size: 2rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+        }
+
+        header .navbar {
+            width: 100%;
+        }
+
+        header .navbar ul {
+            list-style: none;
+            padding: 1rem 3rem;
+        }
+
+        header .navbar ul li a {
+            display: block;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: var(--primary);
+            color: var(--dark);
+            font-size: 2rem;
+            border-radius: 5rem;
+            transition: all 0.3s ease;
+        }
+
+        header .navbar ul li a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateX(1rem);
+        }
+
+        /* Menu Button */
+        #menu {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--dark);
+            cursor: pointer;
+            font-size: 2.5rem;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+            display: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        }
+
+        /* Home Section */
+        .home {
+            display: flex;
+            justify-content: center;
+            flex-flow: column;
+            padding: 0 15rem;
+        }
+
+        .home h3 {
+            font-size: 2.5rem;
+            color: var(--light);
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease backwards;
+        }
+
+        .home h1 {
+            font-size: 5rem;
+            color: var(--light);
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease backwards 0.2s;
+        }
+
+        .home h1 span {
+            color: var(--primary);
+        }
+
+        .home p {
+            font-size: 2rem;
+            color: var(--light-gray);
+            padding: 1rem 0;
+            line-height: 1.5;
+            animation: fadeIn 1s ease backwards 0.4s;
+        }
+
+        /* About Section */
+        .about .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+        }
+
+        .about .row .info {
+            flex: 1 1 48rem;
+            padding: 2rem 1rem;
+            padding-left: 6rem;
+        }
+
+        .about .row .info h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            padding: 1rem 0;
+            font-weight: normal;
+        }
+
+        .about .row .info h3 span {
+            color: var(--light);
+            padding: 0 0.5rem;
+        }
+
+        .about .row .counter {
+            flex: 1 1 48rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .about .row .counter .box {
+            width: 20rem;
+            background: #222;
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .about .row .counter .box:hover {
+            transform: translateY(-1rem);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+        }
+
+        .about .row .counter .box span {
+            font-size: 4rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .about .row .counter .box h3 {
+            font-size: 2rem;
+            color: var(--light);
+            margin-top: 1rem;
+        }
+
+        /* Education Section */
+        .education .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .education .box-container .box {
+            width: 27rem;
+            margin: 4rem 1rem;
+            padding-left: 4rem;
+            border-left: 0.2rem solid var(--primary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .education .box-container .box:hover {
+            transform: translateY(-1rem);
+        }
+
+        .education .box-container .box span {
+            font-size: 1.3rem;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 5rem;
+            padding: 0.5rem 2.5rem;
+            font-weight: bold;
+        }
+
+        .education .box-container .box h3 {
+            font-size: 2rem;
+            color: var(--light);
+            padding: 1.5rem 0;
+        }
+
+        .education .box-container .box p {
+            font-size: 1.4rem;
+            color: var(--light-gray);
+            padding: 1rem 0;
+            line-height: 1.5;
+        }
+
+        .education .box-container .box i {
+            position: absolute;
+            top: -1.5rem;
+            left: -2.5rem;
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            line-height: 5rem;
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark);
+            background: var(--primary);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        }
+
+        /* Portfolio Section */
+        .portfolio .box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+        }
+
+        .portfolio .box-container .box {
+            height: 20rem;
+            width: 26rem;
+            border-radius: 1rem;
+            margin: 2rem;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio .box-container .box:hover {
+            transform: translateY(-1rem);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio .box-container .box img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio .box-container .box:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio .box-container .box .info {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio .box-container .box:hover .info {
+            bottom: 0;
+        }
+
+        .portfolio .box-container .box .info h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio .box-container .box .info p {
+            font-size: 1.4rem;
+            color: var(--light-gray);
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact .row .content {
+            flex: 1 1 30rem;
+            padding: 4rem;
+            padding-bottom: 0;
+        }
+
+        .contact .row .content .title {
+            font-size: 3rem;
+            color: var(--light);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .contact .row .content .info h3 {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--light-gray);
+            padding: 1.5rem 0;
+            font-weight: normal;
+        }
+
+        .contact .row .content .info h3 i {
+            padding-right: 1rem;
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(2rem);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%;
+            }
+
+            .home {
+                padding: 1rem 4rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            header {
+                left: -120%;
+                transition: all 0.3s ease;
+            }
+
+            header.active {
+                left: 0;
+            }
+
+            #menu {
+                display: block;
+            }
+
+            body {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 50%;
+            }
+
+            .home h1 {
+                font-size: 4rem;
+            }
+
+            .home h3 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            header {
+                width: 100%;
+            }
+
+            .heading {
+                margin: 0 3rem;
+            }
+
+            .about .row .counter .box {
+                width: 100%;
+            }
+
+            .education .box-container .box {
+                width: 100%;
+            }
+
+            .portfolio .box-container .box {
+                width: 100%;
+            }
+
+            .contact .row .content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="user">
+            <img src="samuel002.jpg" alt="Samuel Kabeya">
+            <h3 class="name">Samuel Kabeya</h3>
+            <p class="post">Full-Stack Developer</p>
+        </div>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#portfolio">My Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Menu Button -->
+    <div id="menu" class="fas fa-bars"></div>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <h3>HI THERE!</h3>
+        <h1>I'M <span>Samuel Kabeya</span></h1>
+        <p>I'm a passionate web developer, digital creator, and future tech leader, driven by innovation and excellence. 
+        I specialize in crafting clean, responsive websites and digital solutions that not only look great but also solve real-world problems. 
+        My mission is to bring ideas to life through code, creativity, and a user-centered approach.</p>
+        <a href="#about"><button class="btn">About Me <i class="fas fa-user"></i></button></a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h1 class="heading"><span>About</span> Me</h1>
+        <div class="row">
+            <div class="info">
+                <h3><span>Name :</span> Samuel Kabeya</h3>
+                <h3><span>Age :</span> 23</h3>
+                <h3><span>Qualification :</span> BMS</h3>
+                <h3><span>Position :</span> Full-Stack Developer</h3>
+                <h3><span>Languages :</span> English & French</h3>
+                <a href="cv/samuel-kabeya.pdf"><button class="btn">Download CV <i class="fas fa-download"></i></button></a>
+            </div>
+
+            <div class="counter">
+                <div class="box">
+                    <span>2+</span>
+                    <h3>Years of Experience</h3>
+                </div>
+
+                <div class="box">
+                    <span>100+</span>
+                    <h3>Projects Completed</h3>
+                </div>
+
+                <div class="box">
+                    <span>430</span>
+                    <h3>Happy Clients</h3>
+                </div>
+
+                <div class="box">
+                    <span>12+</span>
+                    <h3>Awards Won</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <h1 class="heading">My <span>Education</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2021</span>
+                <h3>HTML, CSS & Web Design Basics</h3>
+                <p>Started my journey by learning the foundations of web development, including HTML5, CSS3, and responsive layout techniques. Built my first static websites.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2022</span>
+                <h3>JavaScript & Front-End Projects</h3>
+                <p>Dived deeper into JavaScript, DOM manipulation, and modern ES6+ features. Created interactive websites and front-end UI components.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2023</span>
+                <h3>React & Single Page Applications</h3>
+                <p>Mastered React.js and built dynamic single-page apps. Gained hands-on experience with components, props, state, and React Router.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2024</span>
+                <h3>Backend Development with Node.js</h3>
+                <p>Learned how to create APIs and work with servers using Node.js and Express. Handled routing, middleware, and connected to MongoDB.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2025</span>
+                <h3>Full-Stack Web Development</h3>
+                <p>Completed intensive training in front-end and back-end technologies including HTML, CSS, JavaScript, React, Node.js, and databases. Built real-world projects.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <span>2026</span>
+                <h3>Advanced Topics & Freelance Work</h3>
+                <p>Explored advanced topics like RESTful APIs, authentication, and performance optimization. Took on freelance projects and real-world client work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h1 class="heading">My <span>Projects</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="images/show1.jpg" alt="Project 1">
+                <div class="info">
+                    <h3>Project 01</h3>
+                    <p>E-commerce Website with React and Node.js</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/show2.jpg" alt="Project 2">
+                <div class="info">
+                    <h3>Project 02</h3>
+                    <p>Social Media Dashboard with Analytics</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/show3.jpg" alt="Project 3">
+                <div class="info">
+                    <h3>Project 03</h3>
+                    <p>Task Management Application</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/show4.jpg" alt="Project 4">
+                <div class="info">
+                    <h3>Project 04</h3>
+                    <p>Weather Forecast App with API Integration</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/show5.jpg" alt="Project 5">
+                <div class="info">
+                    <h3>Project 05</h3>
+                    <p>Portfolio Website for Creative Professional</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/show6.jpg" alt="Project 6">
+                <div class="info">
+                    <h3>Project 06</h3>
+                    <p>Restaurant Booking System</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h1 class="heading">My <span>Contact</span></h1>
+        <div class="row">
+            <div class="content">
+                <h3 class="title">Contact Info</h3>
+                <div class="info">
+                    <h3><i class="fas fa-envelope"></i> elsamuelkabeya@gmail.com</h3>
+                    <h3><i class="fas fa-phone"></i> +254-105-152-874</h3>
+                    <h3><i class="fas fa-phone"></i> +254-768-952-583</h3>
+                    <h3><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery CDN Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Custom JS File -->
+    <script>
+        $(document).ready(function(){
+            // Menu toggle functionality
+            $('#menu').click(function(){
+                $(this).toggleClass('fa-times');
+                $('header').toggleClass('active');
+            });
+            
+            // Close menu when clicking on nav links
+            $('header .navbar a').click(function(){
+                $('#menu').removeClass('fa-times');
+                $('header').removeClass('active');
+            });
+            
+            // Smooth scrolling for anchor links
+            $('a[href*="#"]').on('click', function(e){
+                e.preventDefault();
+                
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+            
+            // Add animation to elements when scrolling
+            $(window).on('scroll load', function(){
+                $('#menu').removeClass('fa-times');
+                $('header').removeClass('active');
+                
+                if($(window).scrollTop() > 0){
+                    $('.top').show();
+                }else{
+                    $('.top').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
